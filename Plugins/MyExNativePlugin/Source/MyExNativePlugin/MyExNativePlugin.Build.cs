@@ -2,12 +2,13 @@
 
 using UnrealBuildTool;
 
-public class MyNativePlugin : ModuleRules
+public class MyExNativePlugin : ModuleRules
 {
-	public MyNativePlugin(ReadOnlyTargetRules Target) : base(Target)
+	public MyExNativePlugin(ReadOnlyTargetRules Target) : base(Target)
 	{
-		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		CppStandard = CppStandardVersion.Latest;
+			
 		
 		PublicDependencyModuleNames.AddRange(
 			new string[]
@@ -21,10 +22,11 @@ public class MyNativePlugin : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				// ... add private dependencies that you statically link with here ...	
 				"CoreUObject",
 				"MyPlugin", 
 				"Engine",
+				"Slate",
+				"SlateCore",
 				"Projects"
 			}
 			);

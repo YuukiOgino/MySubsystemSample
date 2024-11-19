@@ -1,14 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "MyActor.h"
 
 // Sets default values
-AMyActor::AMyActor()
+AMyActor::AMyActor():
+	MyInstance(),
+	MyCustomInstance()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 // Called when the game starts or when spawned
@@ -16,6 +15,22 @@ void AMyActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	MyInstance = NewObject<UMyObject>(this, UMyObject::StaticClass());
+	MyInstance->Initialize();
+
+	// FSubsystemCollection、もしくはFObjectSubsystemCollectionでサブシステムを管理している場合(エラーが発生するのでコメントアウト)
+	//MyInstance->GetSubsystem<UMyNativeSubsystem>()->ShowLogSampleText();
+
+	MyCustomInstance = NewObject<UMyCustomObject>(this, UMyCustomObject::StaticClass());
+	MyCustomInstance->Initialize();
+	// FSubsystemCollectionBaseからカスタムしたSubsystemCollection。管理しているオブジェクトを経由して登録したサブシステム全てに対して実行
+	MyCustomInstance->ShowLogSampleText();
+
+}
+
+void AMyActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	MyInstance->Shutdown();
 }
 
 // Called every frame
