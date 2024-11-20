@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "MyActor.h"
+#include "Subsystems/MySubsystem.h"
 
 // Sets default values
 AMyActor::AMyActor():
@@ -18,8 +19,8 @@ void AMyActor::BeginPlay()
 	MyInstance = NewObject<UMyObject>(this, UMyObject::StaticClass());
 	MyInstance->Initialize();
 
-	// FSubsystemCollection、もしくはFObjectSubsystemCollectionでサブシステムを管理している場合(エラーが発生するのでコメントアウト)
-	//MyInstance->GetSubsystem<UMyNativeSubsystem>()->ShowLogSampleText();
+	// FSubsystemCollection、もしくはFObjectSubsystemCollectionでサブシステムを管理している場合
+	MyInstance->GetSubsystem<UMySubsystem>()->ShowLogSampleText();
 
 	MyCustomInstance = NewObject<UMyCustomObject>(this, UMyCustomObject::StaticClass());
 	MyCustomInstance->Initialize();
