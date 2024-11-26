@@ -18,6 +18,4 @@ public:
 	}
 	
 	FMySubsystemCollection(): FSubsystemCollectionBase(UMyAbstractSubsystem::StaticClass()) {};
-
-	~FMySubsystemCollection()=default;
 };

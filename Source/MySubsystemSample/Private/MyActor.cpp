@@ -32,6 +32,7 @@ void AMyActor::BeginPlay()
 void AMyActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	MyInstance->Shutdown();
+	MyCustomInstance->Shutdown();
 }
 
 // Called every frame
